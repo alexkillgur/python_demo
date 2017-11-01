@@ -130,6 +130,15 @@ class FuncDemo:
         else:
             print('Not positive values')
 
+    @staticmethod
+    def if_else(x, y):
+        if x == y:
+            print('X equal to Y')
+        elif x > y:
+            print('X more than Y by', x - y)
+        else:
+            print('X less than Y by', y - x)
+
 
 funcDemo = FuncDemo()
 print('Function #1: three types of season')
@@ -145,4 +154,9 @@ print('Function #3: call three function from fourth')
 FuncDemo.is_rectangular_triangle(9, 4, 5)
 FuncDemo.is_rectangular_triangle(8, 4, 5)
 FuncDemo.is_rectangular_triangle(3, 4, 5)
+print()
+print('Function #4: if-else')
+FuncDemo.if_else(3, 3)
+FuncDemo.if_else(3, 4)
+FuncDemo.if_else(5, 3)
 print()
