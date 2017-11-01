@@ -85,10 +85,20 @@ class FuncDemo:
         else:
             print('Not a season')
 
+    @staticmethod
+    def parameters_default(first_parameter, second_parameter=None):
+        if second_parameter is None:
+            return 'No second parameter'
+        else:
+            return first_parameter + second_parameter
 
-# funcDemo = FuncDemo()
+
 print('Function #1: three types of season')
 FuncDemo.season_by_switch(12)
 print(FuncDemo.season_by_dict(5))
 FuncDemo.season_by_if(9)
+print()
+print('Function #2: default parameter')
+print(FuncDemo.parameters_default(10))
+print(FuncDemo.parameters_default(10, 14))
 print()
