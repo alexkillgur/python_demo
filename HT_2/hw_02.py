@@ -45,32 +45,16 @@ class FuncDemo:
     @staticmethod
     def season_by_switch(num_of_month):
         for case in Switch(num_of_month):
-            if case(12):
-                pass
-            if case(1):
-                pass
-            if case(2):
+            if case(12, 1, 2):
                 print('Winter')
                 break
-            if case(3):
-                pass
-            if case(4):
-                pass
-            if case(5):
+            if case(3, 4, 5):
                 print('Spring')
                 break
-            if case(6):
-                pass
-            if case(7):
-                pass
-            if case(8):
+            if case(6, 7, 8):
                 print('Summer')
                 break
-            if case(9):
-                pass
-            if case(10):
-                pass
-            if case(11):
+            if case(9, 10, 11):
                 print('Autumn')
                 break
             if case():
@@ -139,6 +123,48 @@ class FuncDemo:
         else:
             print('X less than Y by', y - x)
 
+    @staticmethod
+    def strings(string):
+        if isinstance(string, str):
+            print('Initial string: {0}'.format(string))
+            numbers = list(map(int, filter(lambda digit: digit.isdigit(), string)))
+            letters = list(filter(lambda letter: letter.isalpha(), string))
+            if len(string) in range(30, 51):
+                print('Length: {0}, number of digits: {1}, number of letter: {2} '.format(len(string), len(numbers), len(string) - len(numbers)))
+            elif len(string) < 30:
+                print('Sum of all digits: {0}, string without digits: {1} '.format(sum(numbers), ''.join(letters)))
+            else:
+                print('String without letter: {0} '.format(''.join(list(map(str, numbers)))))
+            print()
+        else:
+            print('Not string')
+
+    @staticmethod
+    def __add(x, y):
+        return x + y
+
+    @staticmethod
+    def __subtract(x, y):
+        return x - y
+
+    @staticmethod
+    def __multiply(x, y):
+        return x * y
+
+    @staticmethod
+    def __divide(x, y):
+        return x / y
+
+    @staticmethod
+    def calculator(x, y, operation):
+        dict_of_operation = {
+            'add': FuncDemo.__add(x, y),
+            'sub': FuncDemo.__subtract(x, y),
+            'mul': FuncDemo.__multiply(x, y),
+            'div': FuncDemo.__divide(x, y)
+        }
+        return dict_of_operation.get(operation)
+
 
 funcDemo = FuncDemo()
 print('Function #1: three types of season')
@@ -159,4 +185,16 @@ print('Function #4: if-else')
 FuncDemo.if_else(3, 3)
 FuncDemo.if_else(3, 4)
 FuncDemo.if_else(5, 3)
+print()
+print('Function #5: strings')
+FuncDemo.strings('f98neroi4nr0c3n30irn03ifek85')
+FuncDemo.strings('f98neroi4nr0c3n30irn03ien3c0rfek785')
+FuncDemo.strings('f98neroi4nr0c3n30irn03ien3c0rfekdno400wenwkowe00koijn35pijnp46ij7k5j78p3kj546p465jnpoj35po6j345')
+FuncDemo.strings(12)
+print()
+print('Function #7: calculator')
+print('Adding {0} and {1}: {2} '.format(5, 4, FuncDemo.calculator(5, 4, 'add')))
+print('Subtract {0} and {1}: {2} '.format(5, 4, FuncDemo.calculator(5, 4, 'sub')))
+print('Multiply {0} and {1}: {2} '.format(5, 4, FuncDemo.calculator(5, 4, 'mul')))
+print('Divide {0} and {1}: {2} '.format(5, 4, FuncDemo.calculator(5, 4, 'div')))
 print()
