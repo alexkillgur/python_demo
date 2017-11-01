@@ -1,6 +1,7 @@
 import math
 
 
+# Class that implements switch-case
 class Switch(object):
     def __init__(self, value):
         self.value = value
@@ -19,7 +20,9 @@ class Switch(object):
         return False
 
 
+# Class for triangle methods for Task 3
 class Rectangle():
+    # Checks if all sides of triangle > 0
     @staticmethod
     def is_positive(a, b, c):
         if a > 0 and b > 0 and c > 0:
@@ -27,12 +30,14 @@ class Rectangle():
         else:
             return False
 
+    # Checks if triangle can exists with this length of sides
     @staticmethod
     def is_triangle(a, b, c):
         if a + b > c and a + c > b and c + b > a:
             return True
         return False
 
+    # Check if triangle has a hypotenuse
     @staticmethod
     def is_hypotenuse_exist(a, b, c):
         if a == math.sqrt(b ** 2 + c ** 2) or b == math.sqrt(a ** 2 + c ** 2) or c == math.sqrt(a ** 2 + b ** 2):
@@ -41,7 +46,9 @@ class Rectangle():
             return False
 
 
+# Demo class for functions
 class FuncDemo:
+    # Task 1: season by switch
     @staticmethod
     def season_by_switch(num_of_month):
         for case in Switch(num_of_month):
@@ -60,6 +67,7 @@ class FuncDemo:
             if case():
                 print('Not a season')
 
+    # Task 1: season by dict
     @staticmethod
     def season_by_dict(num_of_month):
         if num_of_month in range(1, 13):
@@ -80,6 +88,7 @@ class FuncDemo:
         else:
             return 'Not a season'
 
+    # Task 1: season by if-else
     @staticmethod
     def season_by_if(num_of_month):
         if num_of_month in range(1, 13):
@@ -94,6 +103,7 @@ class FuncDemo:
         else:
             print('Not a season')
 
+    # Task 2: default parameters
     @staticmethod
     def parameters_default(first_parameter, second_parameter=None):
         if second_parameter is None:
@@ -101,6 +111,7 @@ class FuncDemo:
         else:
             return first_parameter + second_parameter
 
+    # Task 3: check if figure with given length of sides is rectangular triangle
     @staticmethod
     def is_rectangular_triangle(a, b, c):
         if Rectangle.is_positive(a, b, c):
@@ -114,6 +125,7 @@ class FuncDemo:
         else:
             print('Not positive values')
 
+    # Task 4: conditions
     @staticmethod
     def if_else(x, y):
         if x == y:
@@ -123,6 +135,7 @@ class FuncDemo:
         else:
             print('X less than Y by', y - x)
 
+    # Task 5: simple parse given string
     @staticmethod
     def strings(string):
         if isinstance(string, str):
@@ -139,22 +152,27 @@ class FuncDemo:
         else:
             print('Not string')
 
+    # Task 6 and 7: some function
     @staticmethod
     def __add(x, y):
         return x + y
 
+    # Task 6 and 7: some function
     @staticmethod
     def __subtract(x, y):
         return x - y
 
+    # Task 6 and 7: some function
     @staticmethod
     def __multiply(x, y):
         return x * y
 
+    # Task 6 and 7: some function
     @staticmethod
     def __divide(x, y):
         return x / y
 
+    # Task 7: calculator
     @staticmethod
     def calculator(x, y, operation):
         dict_of_operation = {
@@ -166,33 +184,44 @@ class FuncDemo:
         return dict_of_operation.get(operation)
 
 
-funcDemo = FuncDemo()
-print('Function #1: three types of season')
+print('------------------------------')
+print('TASK #1: three types of season')
+print('------------------------------')
 FuncDemo.season_by_switch(12)
 print(FuncDemo.season_by_dict(5))
 FuncDemo.season_by_if(9)
 print()
-print('Function #2: default parameter')
+print('--------------------------')
+print('TASK #2: default parameter')
+print('--------------------------')
 print(FuncDemo.parameters_default(10))
 print(FuncDemo.parameters_default(10, 14))
 print()
-print('Function #3: call three function from fourth')
+print('----------------------------------------')
+print('TASK #3: call three function from fourth')
+print('----------------------------------------')
 FuncDemo.is_rectangular_triangle(9, 4, 5)
 FuncDemo.is_rectangular_triangle(8, 4, 5)
 FuncDemo.is_rectangular_triangle(3, 4, 5)
 print()
-print('Function #4: if-else')
+print('----------------')
+print('TASK #4: if-else')
+print('----------------')
 FuncDemo.if_else(3, 3)
 FuncDemo.if_else(3, 4)
 FuncDemo.if_else(5, 3)
 print()
-print('Function #5: strings')
+print('----------------')
+print('TASK #5: strings')
+print('----------------')
 FuncDemo.strings('f98neroi4nr0c3n30irn03ifek85')
 FuncDemo.strings('f98neroi4nr0c3n30irn03ien3c0rfek785')
 FuncDemo.strings('f98neroi4nr0c3n30irn03ien3c0rfekdno400wenwkowe00koijn35pijnp46ij7k5j78p3kj546p465jnpoj35po6j345')
 FuncDemo.strings(12)
 print()
-print('Function #7: calculator')
+print('------------------------')
+print('TASKS #6, #7: calculator')
+print('------------------------')
 print('Adding {0} and {1}: {2} '.format(5, 4, FuncDemo.calculator(5, 4, 'add')))
 print('Subtract {0} and {1}: {2} '.format(5, 4, FuncDemo.calculator(5, 4, 'sub')))
 print('Multiply {0} and {1}: {2} '.format(5, 4, FuncDemo.calculator(5, 4, 'mul')))
