@@ -1,3 +1,6 @@
+import math
+
+
 class Switch(object):
     def __init__(self, value):
         self.value = value
@@ -14,6 +17,28 @@ class Switch(object):
             self.fall = True
             return True
         return False
+
+
+class Rectangle():
+    @staticmethod
+    def is_positive(a, b, c):
+        if a > 0 and b > 0 and c > 0:
+            return True
+        else:
+            return False
+
+    @staticmethod
+    def is_triangle(a, b, c):
+        if a + b > c and a + c > b and c + b > a:
+            return True
+        return False
+
+    @staticmethod
+    def is_hypotenuse_exist(a, b, c):
+        if a == math.sqrt(b ** 2 + c ** 2) or b == math.sqrt(a ** 2 + c ** 2) or c == math.sqrt(a ** 2 + b ** 2):
+            return True
+        else:
+            return False
 
 
 class FuncDemo:
@@ -92,7 +117,21 @@ class FuncDemo:
         else:
             return first_parameter + second_parameter
 
+    @staticmethod
+    def is_rectangular_triangle(a, b, c):
+        if Rectangle.is_positive(a, b, c):
+            if Rectangle.is_triangle(a, b, c):
+                if Rectangle.is_hypotenuse_exist(a, b, c):
+                    print('Triangle is rectangular')
+                else:
+                    print('Triangle is not rectangular')
+            else:
+                print('Not a triangle')
+        else:
+            print('Not positive values')
 
+
+funcDemo = FuncDemo()
 print('Function #1: three types of season')
 FuncDemo.season_by_switch(12)
 print(FuncDemo.season_by_dict(5))
@@ -101,4 +140,9 @@ print()
 print('Function #2: default parameter')
 print(FuncDemo.parameters_default(10))
 print(FuncDemo.parameters_default(10, 14))
+print()
+print('Function #3: call three function from fourth')
+FuncDemo.is_rectangular_triangle(9, 4, 5)
+FuncDemo.is_rectangular_triangle(8, 4, 5)
+FuncDemo.is_rectangular_triangle(3, 4, 5)
 print()
