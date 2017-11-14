@@ -30,12 +30,8 @@ def get_dict(line_id, date_time, marker, description):
             'description': description}
 
 
-def count(all_lines, line):
-    counter = 0
-    for current_line in all_lines:
-        if current_line['description'] == line:
-            counter += 1
-    return counter
+def count(all_lines, description):
+    return sum(line['description'] == description for line in all_lines)
 
 # create all_data.csv
 filename_for_all = "../HT_4/report/all_data.csv"
