@@ -1,6 +1,8 @@
+import operator
 import re
 import csv
 import os
+import itertools
 
 MARKERS = ("WARNING", "ERROR", "CRITICAL")
 
@@ -24,11 +26,13 @@ def parse_line(line):
 
 filename = "../HT_4/report/all_data.csv"
 os.makedirs(os.path.dirname(filename), exist_ok=True)
-# file_writer = csv.writer(open(filename, "w", newline=''), delimiter=';')
+
 field_names = ['line_id', 'marker', 'date_time', 'description']
-file_writer = csv.DictWriter(open(filename, "w", newline=''), delimiter=';', fieldnames=field_names)
+file_writer = csv.DictWriter(open(filename, "w", newline=''),
+                             delimiter=';', fieldnames=field_names)
 file_writer.writeheader()
 
+# write all_data.csv by markers
 with open("openerp-server.log", "r") as log_file:
     line_id = 0
     for log_line in log_file:
@@ -36,22 +40,21 @@ with open("openerp-server.log", "r") as log_file:
         log_line = log_line.strip()
         if is_marker_exist(log_line):
             date_time, marker, description = parse_line(log_line)
-            # file_writer.writerow([line_id, marker, date_time, description])
-            file_writer.writerow({'line_id': line_id, 'marker': marker, 'date_time': date_time, 'description': description})
+            file_writer.writerow({'line_id': line_id,
+                                  'marker': marker,
+                                  'date_time': date_time,
+                                  'description': description})
 
+set_of_description = set()
+unique_lines = []
 
-# import csv
-#
-# seen = [] # or set()
-# dup_scan_col = 3
-# uniques = []
-#
-# with open('yourfile.csv', 'r') as f:
-#     reader = csv.reader(f, delimiter='\t')
-#     for row in reader:
-#        if row[dup_scan_col] not in seen:
-#           uniques.append(row)
-#           seen.append(row[dup_scan_col])
+file_reader = csv.DictReader(open(filename, 'r', newline=''),
+                             delimiter=';', fieldnames=field_names)
+for row in file_reader:
+    if row['description'] not in set_of_description:
+        print(row['line_id'])
+        unique_lines.append(row)
+        set_of_description.add(row['description'])
 
-
-
+print(set_of_description)
+print(unique_lines)
